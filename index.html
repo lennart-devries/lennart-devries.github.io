@@ -81,13 +81,41 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-date','listing-date-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-subtitle','listing-period',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-subtitle","listing-date","listing-date-modified"],
+      searchColumns: ["listing-title","listing-subtitle","listing-date","listing-date-modified","listing-period"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-education'] = new List('listing-education', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-experience .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-subtitle','listing-period',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-subtitle","listing-date","listing-date-modified","listing-period"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-experience'] = new List('listing-experience', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -227,11 +255,87 @@ Photo was taken by Henri Roettger at University of Hamburg.
 <h2 data-anchor-id="about">About</h2>
 <p>I am a <strong>Senior Specalist for Data &amp; AI</strong> in the Public Sector at <a href="https://www.pd-g.de/en/">PD - Berater der öffentlichen Hand</a> and an independent <strong>consultant and trainer</strong> for topics related to data science, machine learning and AI literacy. Before, I was a Research Data Scientist in Computational Cognitive Neuroscience (see <a href="https://lennartwittkuhn.com/">lennartwittkuhn.com</a>).</p>
 </section>
+<section id="experience" class="level2">
+<h2 data-anchor-id="experience">Experience</h2>
+<div id="listing-experience" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="NaN" data-listing-date-modified-sort="2025-04">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">Senior Specialist</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external">PD - Berater der öffentlichen Hand GmbH</a>
+</div>
+</div>
+<div class="metadata">
+<a href="" class="no-external">
+<div class="metadata-value listing-period">
+Apr 2025 - present
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1740787200000" data-listing-date-modified-sort="2023-04">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">Postdoctoral Research Scientist</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external">University of Hamburg, Germany</a>
+</div>
+</div>
+<div class="metadata">
+<a href="" class="no-external">
+<div class="metadata-value listing-period">
+Apr 2023 - Mar 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1640995200000" data-listing-date-modified-sort="2023-03">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">Postdoctoral Research Scientist</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external">Max Planck Institute for Human Development, Berlin, Germany</a>
+</div>
+</div>
+<div class="metadata">
+<a href="" class="no-external">
+<div class="metadata-value listing-period">
+Jan 2022 - Mar 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1638316800000" data-listing-date-modified-sort="2017-10">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">Doctoral Researcher</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external">Max Planck UCL Centre for Computational Psychiatry and Ageing Research, Berlin, Germany</a>
+</div>
+</div>
+<div class="metadata">
+<a href="" class="no-external">
+<div class="metadata-value listing-period">
+Oct 2017 - Dec 2021
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
 <section id="education" class="level2">
 <h2 data-anchor-id="education">Education</h2>
 <div id="listing-education" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1617235200000" data-listing-date-modified-sort="2017-10">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1638316800000" data-listing-date-modified-sort="2017-10">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="" class="no-external">PhD Cognitive Neuroscience</a>
@@ -242,11 +346,8 @@ Photo was taken by Henri Roettger at University of Hamburg.
 </div>
 <div class="metadata">
 <a href="" class="no-external">
-<div class="listing-date">
-April 2021
-</div>
-<div class="metadata-value listing-date-modified">
-October 2017
+<div class="metadata-value listing-period">
+Oct 2017 - Dec 2021
 </div>
 </a>
 </div>
@@ -254,7 +355,7 @@ October 2017
 <div class="quarto-post image-right" data-index="1" data-listing-date-sort="1504224000000" data-listing-date-modified-sort="2015-10">
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="" class="no-external">MSc Cognitive-Affective Neuroscience</a>
+<a href="" class="no-external">MSc Cognitive Neuroscience</a>
 </h3>
 <div class="listing-subtitle">
 <a href="" class="no-external">Technical University, Dresden, Germany</a>
@@ -262,11 +363,8 @@ October 2017
 </div>
 <div class="metadata">
 <a href="" class="no-external">
-<div class="listing-date">
-September 2017
-</div>
-<div class="metadata-value listing-date-modified">
-October 2015
+<div class="metadata-value listing-period">
+Oct 2015 - Sep 2017
 </div>
 </a>
 </div>
@@ -282,11 +380,8 @@ October 2015
 </div>
 <div class="metadata">
 <a href="" class="no-external">
-<div class="listing-date">
-September 2015
-</div>
-<div class="metadata-value listing-date-modified">
-October 2012
+<div class="metadata-value listing-period">
+Oct 2012 - Sep 2015
 </div>
 </a>
 </div>
